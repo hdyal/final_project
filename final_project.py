@@ -175,18 +175,6 @@ def sneak_away():
             print("You roll was not high enough the monster spotted you you lose 5 hp")
             starting_health -= 5
             print("Your health is {}".format(starting_health))
-def escape():
-    global starting_health
-    print("If you roll anything higher than a 10 you escaped")
-    print("Anything lower than a 10 the monster returned before you could escape")
-    dice_input = input("Hit enter see what number you get: ")
-    sneak_away_damage = random.randint(0,20)
-    if dice_input == "":
-        print("You rolled a {}".format(sneak_away_damage))
-        if sneak_away_damage >= 10:
-            print("You escaped before the monster returned ")
-        elif sneak_away_damage <= 10:
-            print("You did not escape before the monster returned")
 
 #if end_health == 0:
             #print("You have died at the hands of the foreces of evil.")
@@ -271,7 +259,7 @@ def forest():
         print("As you continue walking through the woods you hear something move through the branches near you.")
         print("You stop and look to see what is making the noise. You quickly move to hide behind a boulder close to you.")
         print("As the morning light shines through the fog you see that the monster is really a griffin.")
-        print("The monster has not seen you yet and you are faced with two options: do you try to sneak away or do you stand your ground and fight.\n")
+        print("The monster has not seen you yet and you are faced with two options: do you try to sneak away or do you stand your ground and fight.")
         choice2a = input("To fight type fight to sneak away type sneak(all lower case): ")
         if choice2a[0] == "f" or "F":
             griffin_fight()
@@ -310,26 +298,43 @@ def cave():
     user_input = input("To fight the bat type fight, to escape the bat type escape(all lower case): ")
     if user_input == "fight" or user_input == "Fight":
         bat_fight()
+        if starting_health == 0:
+            print("You have died at the hands of the foreces of evil.")
+            print("Because of your death the evil warlock was able to grow his monster army and take over all the land.")
+            print()
         print("After you have finished off the bat you walk pass its lifeless body you see a bright area up.")
         print("Do you explore the area ahead or do you turn around and exit the cave")
         user_input = input("to explore type explore to turn around type leave(all lower case)\n")
-        if user_input[0] == "e" or user_input == "E":
+        if user_input == "explore" or user_input == "Explore":
             print("As you get closer to the lit area you realize that the light source is not fromm the sunn but multiple torches on the walls of the cave")
             print("As you look around you see a chest and animal skin on the ground making a bed for somthing big to sleep on")
             print("You take a look inside of the chest and dicover a huge health boost that will give you 20 hp")
             starting_health += 20
-            print("Your new health is {}".format(starting_health))
+            print("Your new health is {}\n".format(starting_health))
             print("You begin to wonder what lives in here it had to be something big judging by the bed.")
             print("you decide to leave before whatever sleeps in that bed gets back")
-            escape()
-        elif user_input[0] == "l" or user_input[0] == "L":
-            print()
+            print("while on the way out of the cave you start to hear the loud foot prints of something coming towrds you.")
+            print("You were not able to leave before the monster comes back, you prepare yourself for battle because you have no other choice")
+            minotaur_fight()
+            if starting_health == 0:
+                print("You have died at the hands of the foreces of evil.")
+                print("Because of your death the evil warlock was able to grow his monster army and take over all the land.")
+                print()
+            print("After defeating the minotaur you exit the cave and head along the path")
+            path()
+        elif user_input == "leave" or user_input == "Leave":
+            print("You were able to leave the cave and you continued down the path")
+            path()
     elif user_input == "run" or user_input == "Run":
         sneak_away()
-
+        if starting_health == 0:
+            print("You have died at the hands of the foreces of evil.")
+            print("Because of your death the evil warlock was able to grow his monster army and take over all the land.")
+            print()
+        print("You were able to run away form the giant bat and you started to follow the path")
+        path()
 def path():
     print()
 
-main()
 # talk to somebody about checking to make sure that the if statement about checking health after a fight will work.
 #forest choice1a leads to cave
